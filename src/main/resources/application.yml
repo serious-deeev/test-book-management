@@ -1,0 +1,17 @@
+server:
+  port: ${APP_PORT:9100}
+
+spring:
+  application:
+    name: test-book-management
+
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://192.168.50.110:5440/tba}
+    username: ${POSTGRES_USERNAME:tba}
+    password: ${POSTGRES_PASSWORD:password}
+
+app:
+  base-url: ${APP_BASE_URL:http://127.0.0.1}
+  base-file-api: ${APP_BASE_API:/api/v1/files/}
+  book-pagination:
+    page-size: ${PAGE_SIZE:10}
