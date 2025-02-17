@@ -1,4 +1,4 @@
-package org.serious.dev.dao;
+package org.serious.dev.repository;
 
 import org.serious.dev.entity.Book;
 import org.springframework.data.domain.Page;

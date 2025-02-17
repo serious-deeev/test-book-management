@@ -1,7 +1,7 @@
 package org.serious.dev.service.impl;
 
 import org.serious.dev.config.PaginationProperties;
-import org.serious.dev.dao.BookRepository;
+import org.serious.dev.repository.BookRepository;
 import org.serious.dev.dto.BookDTO;
 import org.serious.dev.entity.Book;
 import org.serious.dev.exception.BookIsAlreadyExistsException;
