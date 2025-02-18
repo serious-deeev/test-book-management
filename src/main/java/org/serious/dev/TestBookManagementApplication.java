@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
  * помеченные @ConfigurationProperties,
  * без необходимости вручную аннотировать их @Component или указывать в @EnableConfigurationProperties.
  */
-
 @ConfigurationPropertiesScan
 @SpringBootApplication
 public class TestBookManagementApplication {

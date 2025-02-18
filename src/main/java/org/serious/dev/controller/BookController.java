@@ -6,7 +6,15 @@ import org.serious.dev.service.BookService;
 import org.serious.dev.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -24,22 +32,22 @@ public class BookController {
     }
 
     @GetMapping("/books/{id}")
-    public org.serious.dev.dto.BookDTO getBookInfo(@PathVariable long id) {
+    public org.serious.dev.dto.BookDTO getBookInfo(@PathVariable Long id) {
         return bookService.getBookByIdWithImageLink(id);
     }
 
     @GetMapping("/files/{id}/download")
-    public ResponseEntity<byte[]> downloadBookImage(@PathVariable long id) {
+    public ResponseEntity<byte[]> downloadBookImage(@PathVariable Long id) {
         return fileService.downloadBookImage(id);
     }
 
     @GetMapping("/books/search")
-    public List<BookDTO> findBooksByPhrase(@RequestParam(name = "phrase") String phrase, @RequestParam(defaultValue = "0", name = "page") int page) {
+    public List<BookDTO> findBooksByPhrase(@RequestParam(name = "phrase") String phrase, @RequestParam(name = "page") Integer page) {
         return bookService.findBooksByPhrase(phrase, page);
     }
 
     @GetMapping("/books")
-    public List<BookDTO> getBooks(@RequestParam(defaultValue = "0", name = "page") int page) {
+    public List<BookDTO> getBooks(@RequestParam(name = "page") Integer page) {
         return bookService.getBooks(page);
     }
 
@@ -49,12 +57,12 @@ public class BookController {
     }
 
     @PatchMapping("/books/{id}")
-    public void markBookRead(@PathVariable long id) {
+    public void markBookRead(@PathVariable Long id) {
         bookService.markBookRead(id);
     }
 
     @PutMapping("/books/{id}")
-    public void updateBook(@PathVariable long id, @RequestBody Book updatedBook) {
+    public void updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
         bookService.updateBook(id, updatedBook);
     }
 }

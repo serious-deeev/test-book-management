@@ -54,7 +54,7 @@ public class BookServiceImpl implements BookService {
                 .orElseThrow(() -> new NoSuchBookException(id));
 
         String imageLink = generateImageLink(book.getId());
-        return new org.serious.dev.dto.BookDTO(book, imageLink);
+        return new BookDTO(book, imageLink);
     }
 
     @Override
@@ -77,10 +77,6 @@ public class BookServiceImpl implements BookService {
                 .stream()
                 .map(book -> new BookDTO(book, generateImageLink(book.getId())))
                 .toList();
-    }
-
-    private String generateImageLink(long id) {
-        return baseUrl + ":" + serverPort + baseFileApi + id + "/download";
     }
 
     @Override
@@ -118,5 +114,9 @@ public class BookServiceImpl implements BookService {
         book.setReadAlready(false);
         book.setImage(updatedBook.getImage());
         saveBook(book);
+    }
+
+    private String generateImageLink(long id) {
+        return baseUrl + ":" + serverPort + baseFileApi + id + "/download";
     }
 }

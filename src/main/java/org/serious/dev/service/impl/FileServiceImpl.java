@@ -1,5 +1,6 @@
 package org.serious.dev.service.impl;
 
+import org.serious.dev.enums.ImageExtension;
 import org.serious.dev.repository.BookRepository;
 import org.serious.dev.entity.Book;
 import org.serious.dev.exception.NoSuchBookException;
@@ -49,7 +50,6 @@ public class FileServiceImpl implements FileService {
      * Поэтому с помощью replaceAll заменяем символы.
      * Иначе при скачивании картинки имя будет: "Психология+и+здравый+смысл.jpg".
      */
-
     private String encodedFileName(String title) {
         return URLEncoder
                 .encode(title, StandardCharsets.UTF_8)
@@ -70,11 +70,6 @@ public class FileServiceImpl implements FileService {
 
     // сформировать расширение для скачиваемого файла, исходя из его content-type
     private String getExtensionFromContentType(String contentType) {
-        return switch (contentType) {
-            case "image/jpeg" -> ".jpg";
-            case "image/png" -> ".png";
-            case "image/gif" -> ".gif";
-            default -> "";
-        };
+        return ImageExtension.getImageExtension(contentType);
     }
 }
